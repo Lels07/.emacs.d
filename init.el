@@ -1,5 +1,13 @@
 ;;; init.el --- Optimized Minimal Emacs Configuration -*- lexical-binding: t -*-
 
+;; --- HANDLE CUSTOM FILE ---
+;; Prevent Emacs from adding 'custom-set-variables' to the bottom of init.el
+;; Instead, save them to a separate file that we load if it exists.
+(setq custom-file (locate-user-emacs-file "custom.el"))
+
+;; Load the custom file (if it exists) silently
+(load custom-file 'noerror 'nomessage)
+
 ;; --- 1. PERFORMANCE & CORE SETTINGS ---
 
 ;; Increase garbage collection threshold during startup to speed things up
@@ -145,16 +153,3 @@
           (dired org-dir)
         (message "Org directory not found at: %s" org-dir)))))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(corfu exec-path-from-shell jupyter magit multiple-cursors orderless)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
