@@ -1,0 +1,7 @@
+elpa/
+eln-cache/
+auto-save-list/
+/early-init.el
+/tramp
+/.mc-lists.el
+.DS_Store
