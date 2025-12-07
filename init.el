@@ -12,7 +12,7 @@
 
 ;; Increase garbage collection threshold during startup to speed things up
 (setq gc-cons-threshold 100000000) 
-;; Increase output limit for subprocesses (crucial for LSP/Jupyter)
+;; Increase output limit for subprocesses
 (setq read-process-output-max (* 2 1024 1024))
 
 ;; Disable annoying backup and autosave files
@@ -61,7 +61,7 @@
 
 
 ;; use https://github.com/Echinoidea/Aporetic-Nerd-Font nerd font version of https://github.com/protesilaos/aporetic
-(set-face-attribute 'default nil :family "AporeticSansMono Nerd Font" :height 180)
+(set-face-attribute 'default nil :family "Roboto Mono" :height 180)
 
 
 ;; Theming using prot's modus operandi
@@ -90,7 +90,7 @@
   ;; If you only care about the Modus themes, then (i) you do not need
   ;; to enable the `modus-themes-include-derivatives-mode' and (ii) do
   ;; not install and activate those other theme packages.
-  (modus-themes-include-derivatives-mode 1)
+  ;; (modus-themes-include-derivatives-mode 1)
   :bind
   (("<f5>" . modus-themes-rotate)
    ("C-<f5>" . modus-themes-select)
@@ -215,6 +215,4 @@
       (if (file-directory-p org-dir)
           (dired org-dir)
         (message "Org directory not found at: %s" org-dir)))))
-
-
 
