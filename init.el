@@ -216,3 +216,19 @@
           (dired org-dir)
         (message "Org directory not found at: %s" org-dir)))))
 
+
+(use-package uv-venv
+  :ensure nil ;; Important: tells use-package this isn't a package archive download
+  :load-path "~/work/uv-venv/" 
+  
+  :custom
+  (uv-venv-lsp-server "pyright") ;; Options: "basedpyright", "pyright", "python-lsp-server"
+  
+  :hook
+  ;; 1. Auto-activation hook
+  (python-mode . uv-venv-auto-activate)
+  
+  ;; 2. Visual feedback hook (Modeline)
+  (python-mode . (lambda ()
+                   (setq mode-line-format
+                         (append mode-line-format '((:eval uv-venv-current-name)))))))
