@@ -60,6 +60,10 @@
 (electric-pair-mode 1)
 
 
+;; use https://github.com/Echinoidea/Aporetic-Nerd-Font nerd font version of https://github.com/protesilaos/aporetic
+(set-face-attribute 'default nil :family "AporeticSansMono Nerd Font" :height 180)
+
+
 ;; Theming using prot's modus operandi
 
 (use-package modus-themes
@@ -120,6 +124,11 @@
   :bind (("C-." . mc/mark-next-like-this-word)
          ("C-," . mc/mark-previous-like-this-word)
          ("C-M-." . mc/mark-all-words-like-this)))
+
+
+;; Expand region package
+(use-package expand-region
+  :bind ("C-=" . er/expand-region))
 
 
 ;; --- MAGIT (Git Client) ---

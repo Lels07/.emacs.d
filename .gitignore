@@ -6,3 +6,4 @@ auto-save-list/
 /.mc-lists.el
 .DS_Store
 custom.el
+transient/
