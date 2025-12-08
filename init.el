@@ -216,6 +216,7 @@
           (dired org-dir)
         (message "Org directory not found at: %s" org-dir)))))
 
+;; Python config 
 
 (use-package uv-venv
   :ensure nil ;; Important: tells use-package this isn't a package archive download
@@ -232,3 +233,32 @@
   (python-mode . (lambda ()
                    (setq mode-line-format
                          (append mode-line-format '((:eval uv-venv-current-name)))))))
+
+
+
+
+;; gptel (testing)
+
+;; 2. Allow upgrading built-in packages like 'transient'
+(setq package-install-upgrade-built-in t)
+
+;; 3. Force update 'transient' explicitly to be safe
+(use-package transient
+  :ensure t)
+
+(use-package gptel
+  :ensure t
+  :config
+  ;; 1. Set the default model
+  (setq gptel-model 'amazon/nova-2-lite-v1:free)
+
+  ;; 2. Define the OpenRouter backend
+  (setq gptel-backend
+        (gptel-make-openai "OpenRouter"
+          :host "openrouter.ai"
+          :endpoint "/api/v1/chat/completions"
+          :stream t
+          ;; MAGIC LINE: This tells gptel to look for "machine openrouter.ai" in .authinfo
+          :key #'gptel-api-key-from-auth-source 
+          :models '(amazon/nova-2-lite-v1:free
+		    tngtech/deepseek-r1t2-chimera:free))))
