@@ -7,3 +7,6 @@ auto-save-list/
 .DS_Store
 custom.el
 transient/
+css/
+url/
+eshell/

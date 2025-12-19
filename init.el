@@ -216,23 +216,29 @@
           (dired org-dir)
         (message "Org directory not found at: %s" org-dir)))))
 
+(use-package markdown-mode
+  :ensure t
+  :mode ("README\\.md\\'" . gfm-mode)
+  :init (setq markdown-command "multimarkdown")
+  :bind (:map markdown-mode-map
+         ("C-c C-e" . markdown-do)))
+
 ;; Python config 
 
-(use-package uv-venv
-  :ensure nil ;; Important: tells use-package this isn't a package archive download
-  :load-path "~/work/uv-venv/" 
+;; (use-package uv-venv
+;;   :ensure nil ;; Important: tells use-package this isn't a package archive download
+;;   :load-path "~/work/uv-venv/" 
   
-  :custom
-  (uv-venv-lsp-server "pyright") ;; Options: "basedpyright", "pyright", "python-lsp-server"
+;;   (uv-venv-lsp-server "pyright") ;; Options: "basedpyright", "pyright", "python-lsp-server"
   
-  :hook
-  ;; 1. Auto-activation hook
-  (python-mode . uv-venv-auto-activate)
+;;   :hook
+;;   ;; 1. Auto-activation hook
+;;   (python-mode . uv-venv-auto-activate)
   
-  ;; 2. Visual feedback hook (Modeline)
-  (python-mode . (lambda ()
-                   (setq mode-line-format
-                         (append mode-line-format '((:eval uv-venv-current-name)))))))
+;;   ;; 2. Visual feedback hook (Modeline)
+;;   (python-mode . (lambda ()
+;;                    (setq mode-line-format
+;;                          (append mode-line-format '((:eval uv-venv-current-name)))))))
 
 
 
@@ -262,3 +268,10 @@
           :key #'gptel-api-key-from-auth-source 
           :models '(amazon/nova-2-lite-v1:free
 		    tngtech/deepseek-r1t2-chimera:free))))
+
+;; (use-package polymode)
+;; (use-package poly-markdown
+;;   :ensure t)
+;; (use-package markdown-mode)
+
+(use-package quarto-mode)
